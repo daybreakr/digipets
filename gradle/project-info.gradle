@@ -1,0 +1,72 @@
+afterEvaluate { project ->
+    def ROOT_PROJECT = "root-project"
+    def ANDROID_APPLICATION = "android-application"
+    def ANDROID_LIBRARY = "android-library"
+    def JAVA_LIBRARY = "java-library"
+
+    def type = null
+    if (project.name == rootProject.name) {
+        type = ROOT_PROJECT
+    } else if (project.plugins.hasPlugin('com.android.application')) {
+        type = ANDROID_APPLICATION
+    } else if (project.plugins.hasPlugin('com.android.library')) {
+        type = ANDROID_LIBRARY
+    } else if (project.plugins.hasPlugin('java-library')) {
+        type = JAVA_LIBRARY
+    }
+
+    if (type != null) {
+        task projectInfo {
+            switch (type) {
+                case ROOT_PROJECT:
+                    println "===== Root Project ====="
+                    println "[name]"
+                    println "${rootProject.name}"
+                    println ""
+                    println "[group]"
+                    println "${rootProject.group}"
+                    println "[version]"
+                    println "${rootProject.version}"
+                    println "========================"
+                    break
+                case ANDROID_APPLICATION:
+                    doLast {
+                        println "===== Android Application ====="
+                        println "[name]"
+                        println "${project.name}"
+                        println ""
+                        println "[applicationId]"
+                        println "${project.applicationId}"
+                        println "[version]"
+                        println "${project.version} (${project.versionCode})"
+                        println " -------------------------------"
+                    }
+                    break
+                case ANDROID_LIBRARY:
+                    doLast {
+                        println "===== Android Library ====="
+                        println "[name]"
+                        println "${project.name}"
+                        println ""
+                        println "[libraryId]"
+                        println "${project.group}:${project.name}:${project.version}"
+                        println "----------------------------"
+                    }
+                    break
+                case JAVA_LIBRARY:
+                    doLast {
+                        println "===== Java Library ====="
+                        println "[name]"
+                        println "${project.name}"
+                        println ""
+                        println "[libraryId]"
+                        println "${project.group}:${project.name}:${project.version}"
+                        println "----------------------------"
+                    }
+                    break
+                default:
+                    break
+            }
+        }
+    }
+}

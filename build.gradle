@@ -1,0 +1,24 @@
+buildscript {
+    apply from: 'constants.gradle'
+
+    repositories {
+        google()
+        jcenter()
+    }
+
+    dependencies {
+        classpath gradlePlugins.android
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+
+    version = versionName
+    ext.versionCode = versionCode
+}
+
+apply from: gradlePlugins.projectInfo
