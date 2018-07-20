@@ -5,7 +5,7 @@ import java.util.List;
 public class DigipetFamilyRepository {
     private final DigipetFamilyDao mDao;
 
-    DigipetFamilyRepository(DigipetFamilyDao dao) {
+    public DigipetFamilyRepository(DigipetFamilyDao dao) {
         mDao = dao;
     }
 

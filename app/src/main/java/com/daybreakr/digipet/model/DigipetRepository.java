@@ -20,8 +20,8 @@ public class DigipetRepository {
                 digipet.familyId = familyId;
                 digipet.firstName = firstName;
                 digipet.lastName = lastName;
-                digipet.birthday = new Date();
-                digipet.lastFeedDate = new Date(0);
+                digipet.birthday = new Date(); // now
+                digipet.lastFeedDate = new Date(0); // not fed yet
                 mDao.insertDigipet(digipet);
             }
         });
