@@ -3,12 +3,14 @@ package com.daybreakr.digipet.model;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
+import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 
 import java.util.Date;
 
 @Entity(tableName = "digipets",
-        foreignKeys = {@ForeignKey(entity = DigipetFamily.class, parentColumns = {"_id"}, childColumns = {"family_id"})})
+        foreignKeys = {@ForeignKey(entity = DigipetFamily.class, parentColumns = {"_id"}, childColumns = {"family_id"})},
+        indices = {@Index("family_id")})
 public class Digipet {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "_id")
